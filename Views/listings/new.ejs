@@ -3,7 +3,7 @@
  <div class="col-8 offset-2" >
     <br><br/>
     <h3>Create a New Listing</h3>
-    <form method="POST" action="/listings" novalidate class="needs-validation">
+    <form method="POST" action="/listings" novalidate class="needs-validation" enctype="multipart/form-data">
 
         <div class="mb-3">
         <label for="title" class="form-lable">Title</label>
@@ -22,9 +22,19 @@
         ></textarea>
         </div>
 
-        <div class="mb-3">
+        <!-- <div class="mb-3">
         <label for="image" class="form-lable">Image Link</label>
         <input name="listing[image]" placeholder="Enter image url" type="text" class="form-control">
+        </div> -->
+
+        <div class="mb-3">
+        <label for="image" class="form-lable">Upload Image</label>
+        <input 
+              name="listing[image]" 
+              type="file" 
+              class="form-control"
+              >
+          required
         </div>
         
         <div class="row">
@@ -40,6 +50,29 @@
          </div>
         </div>
         
+        <div class="mb-3">
+        <label for="category" class="form-label">Category</label>
+        <select
+        name="listing[category]"
+        id="category"
+        class="form-select"
+        required
+       >
+    <option value="">Select Category</option>
+    <option value="Trending">Trending</option>
+    <option value="Rooms">Rooms</option>
+    <option value="Iconic Cities">Iconic Cities</option>
+    <option value="Mountains">Mountains</option>
+    <option value="Castles">Castles</option>
+    <option value="Amazing Pools">Amazing Pools</option>
+    <option value="Camping">Camping</option>
+    <option value="Farms">Farms</option>
+    <option value="Arctic">Arctic</option>
+    <option value="Domes">Domes</option>
+    <option value="Boats">Boats</option>
+  </select>
+</div>
+
         
         <div class="mb-3">
             <label for="location" class="form-lable">Location</label>
