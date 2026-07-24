@@ -1,50 +1,5 @@
 <% layout("/layouts/boilerplate") %> 
 
-<style>
-    #filters{
-        display:flex;
-        flex-wrap: wrap;
-        align-items: center;
-    }
-    .filter{
-        text-align: center;
-        margin-right: 2rem;
-        margin-top: 2rem;
-        opacity: 0.7;
-    }
-
-    .filter:hover{
-        opacity: 1;
-        cursor: pointer;
-    }
-
-    .filter p{
-        font-size: 0.8rem;
-    }
-
-    .tax-info{
-        display: none;
-    }
-    .tax-toggle{
-        border:1px solid black;
-        border-radius:1rem;
-        height: 3.25rem;
-        padding:1rem;
-        margin-left:3rem ;
-        display: flex;
-        align-items: center;
-
-    }
-    .active-filter{
-    opacity: 1;
-    border-bottom: 2px solid black;
-    }
-
-    .active-filter p{
-    font-weight: 600;
-    }
-</style>
-
 
 <div id="filters">
 
@@ -125,17 +80,19 @@
     </div>
 </a>
 
-<a href="/listings" class="text-decoration-none text-dark">
-    <div class="filter">
-        <div><i class="fa-solid fa-xmark"></i></div>
-        <p>Clear</p>
-    </div>
-</a>
+<% if (selectedCategory) { %>
+    <a href="/listings" class="text-decoration-none text-dark">
+        <div class="filter">
+            <div><i class="fa-solid fa-xmark"></i></div>
+            <p>Clear</p>
+        </div>
+    </a>
+<% } %>
 
  <div class="tax-toggle">
     <div class="form-check-reverse form-switch">
   <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-  <label class="form-check-label" for="flexSwitchCheckDefault">Display total after taxes</label>
+  <label class="form-check-label" for="flexSwitchCheckDefault">Show price with GST</label>
 </div>
  </div>
 </div>
@@ -145,9 +102,12 @@
 <% if(allListings.length === 0){ %>
 
 <div class="text-center mt-5">
-    <h3>No Listings Found 😔</h3>
-</div>
 
+   <i class="fa-solid fa-house-circle-xmark fa-4x mb-3"></i>
+   <h3>No stays found</h3>
+   <p class="text-muted">Try another category.</p>
+
+</div>
 <% } else { %>
 
 <% for(let listing of allListings){ %>
@@ -160,7 +120,7 @@
                     class="card-img-top listing-img"
                     alt="listing_image"
                 >
-                <div class="card-img-overlay">overlay</div>
+                <div class="card-img-overlay">StayEase</div>
                 <div class="card-body">
                     <p class="card-text">
                         <b><%= listing.title %></b> <br>
